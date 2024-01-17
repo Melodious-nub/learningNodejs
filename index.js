@@ -1,6 +1,9 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
+
+const slugify = require('slugify');
+
 const replaceTemplate = require('./modules/replaceTemplate');
 
 // day-1 for files
@@ -51,6 +54,10 @@ const tempProduct = fs.readFileSync('./templates/template-product.html', 'utf-8'
 
 const data = fs.readFileSync('./dev-data/data.json', 'utf-8');
 const dataObj = JSON.parse(data);
+
+// for testing new dependency work or not
+// const slug = dataObj.map(el => slugify(el.productName, {lower: true}));
+// console.log(slug);
 
 const server = http.createServer((req, res) => {
     // console.log(req.url);
